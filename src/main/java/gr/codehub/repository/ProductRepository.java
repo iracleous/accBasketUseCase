@@ -27,4 +27,8 @@ public class ProductRepository {
         return null;
      }
 
+     public List<Product> getProducts(){
+        return products;
+     }
+
 }

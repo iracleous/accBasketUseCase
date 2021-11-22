@@ -5,6 +5,7 @@ import gr.codehub.repository.ProductRepository;
 import gr.codehub.services.ProductService;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class ProductServiceImp implements ProductService {
     private final ProductRepository productRepository;
@@ -26,6 +27,12 @@ public class ProductServiceImp implements ProductService {
     public Product readProduct(int productId) {
         return productRepository.getProductById(productId);
     }
+
+    @Override
+    public List<Product> readProduct() {
+        return productRepository.getProducts();
+    }
+
 
     @Override
     public Product updateProduct(int productId, BigDecimal newPrice) {
