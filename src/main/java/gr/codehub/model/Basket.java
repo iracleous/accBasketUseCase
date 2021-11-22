@@ -8,7 +8,7 @@ import java.util.List;
 public class Basket {
 
     private int id;
-    private List<Product> products = new ArrayList<>();
+    private List<BasketItem> products = new ArrayList<>();
     private String customer;
     private Date dateTimePurchase;
     private Date dateTimeDelivery;
@@ -21,12 +21,21 @@ public class Basket {
         this.id = id;
     }
 
-    public List<Product> getProducts() {
+    public List<BasketItem> getProducts() {
         return products;
     }
 
    public Product addProduct(Product product){
-        products.add(product);
+
+        for(BasketItem basketItem:products){
+            if (basketItem.getProduct().getId()==product.getId()){
+                basketItem.setQuantity(basketItem.getQuantity() + 1);
+                return basketItem.getProduct();
+            }
+         }
+
+        BasketItem basketItem = new BasketItem(product, 1);
+        products.add(basketItem);
         return product;
    }
 
@@ -57,9 +66,12 @@ public class Basket {
 
     public BigDecimal getTotal(){
         BigDecimal total =  BigDecimal.valueOf(0.);
-        for(Product product:products)
+        for(BasketItem basketItem:products)
         {
-            total = total.add(product.getPrice()) ;
+            total = total.add( basketItem
+                    .getProduct()
+                    .getPrice()
+                    .multiply(new BigDecimal(basketItem.getQuantity()))  ) ;
         }
         return total;
     }

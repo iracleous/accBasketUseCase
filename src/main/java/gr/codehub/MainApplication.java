@@ -38,12 +38,15 @@ public class MainApplication {
         try {
             basketService.addProduct(basketId, 1);
             basketService.addProduct(basketId, 1);
-            basketService.addProduct(basketId, 3);
+            basketService.addProduct(basketId, 2);
+            basketService.addProduct(basketId, 2);
+            basketService.addProduct(basketId, 2);
         } catch (BasketException | ProductException e) {
             e.printStackTrace();
         }
 
         System.out.println("Total basket cost =" +basketService.getTotal(basketId));
+        basketService.persistBasket("myBasket.txt",basketId);
 
     }
 }

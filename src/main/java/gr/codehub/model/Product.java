@@ -8,7 +8,7 @@ public class Product {
     private BigDecimal price;
     private String name;
     private String supplier;
-    private int quantity;
+    private int inventoryQuantity;
 
     public int getId() {
         return id;
@@ -42,24 +42,23 @@ public class Product {
         this.supplier = supplier;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getInventoryQuantity() {
+        return inventoryQuantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setInventoryQuantity(int inventoryQuantity) {
+        this.inventoryQuantity = inventoryQuantity;
     }
-
 
     public Product() {
     }
 
-    public Product(int id, BigDecimal price, String name, String supplier, int quantity) {
+    public Product(int id, BigDecimal price, String name, String supplier, int inventoryQuantity) {
         this.id = id;
         this.price = price;
         this.name = name;
         this.supplier = supplier;
-        this.quantity = quantity;
+        this.inventoryQuantity = inventoryQuantity;
     }
 
     @Override
@@ -69,7 +68,7 @@ public class Product {
                 ", price=" + price +
                 ", name='" + name + '\'' +
                 ", supplier='" + supplier + '\'' +
-                ", quantity=" + quantity +
+                ", quantity=" + inventoryQuantity +
                 '}';
     }
 }
