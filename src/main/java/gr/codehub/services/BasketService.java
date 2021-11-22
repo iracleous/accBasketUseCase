@@ -1,8 +1,10 @@
 package gr.codehub.services;
 
+import gr.codehub.businessexceptions.BasketException;
+import gr.codehub.businessexceptions.ProductException;
 import gr.codehub.model.Basket;
-import gr.codehub.model.Product;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public interface BasketService {
@@ -11,10 +13,12 @@ public interface BasketService {
     Basket updateBasket(Date deliveryDate);
     Basket deleteBasket(int basketId);
 
-    void addProduct(int basketId, Product product);
-    void removeProduct(int basketId, Product product);
+    void addProduct(int basketId, int productId) throws BasketException, ProductException;
+    void removeProduct(int basketId, int productId);
 
     void persistBasket(String filename, int basketId);
     Basket loadBasket(String filename);
+
+    BigDecimal getTotal(int basketId);
 
 }
